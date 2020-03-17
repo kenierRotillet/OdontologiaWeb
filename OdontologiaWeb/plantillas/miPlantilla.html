@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Este es mi primera plantilla</title>
+</head>
+<body>
+    {% block content %}
+    {% include "barra.html" %}
+    <h2>Este es mi primera plantilla</h2>
+    <p>El nombre de la persona es :{{nombre_persona.nombre}} y la edad es {{nombre_persona.edad}}</p>
+    <p>La hora actual a d&iacute;a n&uacute;mero es   {{hora}}</p>
+
+    <p>
+        {% if temas %}
+        {% for mitema in temas %}
+         <ul>
+            <li> {{mitema}} </li>
+
+        </ul>
+        {% endfor %}
+        {% else %}
+            <li> La lista esta vacia</li>
+            <h3>nada que mostrar </h3>
+        {% endif %}
+    </p>
+    {% endblock %}
+</body>
+</html>

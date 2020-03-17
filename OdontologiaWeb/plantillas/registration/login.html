@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Titulo de Login {% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+
+        <div id="envoltura">
+        <div id="contenedor">
+
+            <div id="cabecera" >
+                <img src="./static/img/imagen_dientes.jpg">
+            </div>
+
+            <div id="cuerpo">
+                <form id="form-login" action="" method="post" autocomplete="off">
+
+                    <p><label >{{ form.username.label_tag}}</label></p>
+                        <div id="usuario">{{ form.username }}</div>
+
+                    <p id="pass"><label>{{ form.password.label_tag }}</label></p>
+                     <div id="contrasenia">{{ form.password }}</div>
+
+                    <p id="bot"><input type="submit" id="submit" name="submit" value="login" class="boton"></p>
+                     <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+                </form>
+            </div><!--fin cuerpo-->
+            {% if form.errors %}
+            <p id="error">Your username and password didn't match. Please try again.</p>
+                {% endif %}
+            <div id="pie">Sistema de Login Y Registro</div>
+        </div><!-- fin contenedor -->
+    </div><!--fin envoltura-->
+
+    </form>
+{% endblock %}
